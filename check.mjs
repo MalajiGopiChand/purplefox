@@ -1,0 +1,9 @@
+import {readFile,readdir,stat} from 'node:fs/promises';
+import path from 'node:path';
+import assert from 'node:assert/strict';
+import {site,events,gallery,packages,recentEvents} from './src/data.mjs';
+const root=path.resolve('dist');let pages=0,links=0,images=0;
+async function walk(dir){for(const entry of await readdir(dir,{withFileTypes:true})){const file=path.join(dir,entry.name);if(entry.isDirectory())await walk(file);else if(entry.name==='index.html'){pages++;const html=await readFile(file,'utf8');assert.equal((html.match(/<h1[ >]/g)||[]).length,1,`${file}: one h1`);assert.match(html,/<meta name="description"/);assert.match(html,/<link rel="canonical"/);for(const match of html.matchAll(/(?:href|src)="([^"]+)"/g)){const url=match[1];if(url.startsWith('/')){const target=path.join(root,url.split('#')[0]);const info=await stat(target).catch(()=>null);assert.ok(info,`${file}: missing ${url}`);if(info.isDirectory())assert.ok(await stat(path.join(target,'index.html')));links++}if(url.startsWith('https://wa.me/')){assert.equal(new URL(url.replaceAll('&amp;','&')).pathname,'/'+site.phone);assert.ok(new URL(url.replaceAll('&amp;','&')).searchParams.get('text').startsWith('Hello Purple Fox Event Planners!'));}}for(const im of html.matchAll(/<img\b[^>]+>/g)){if(im[0].includes('src='))assert.match(im[0],/alt="[^"]+"/);images++;}}}}
+assert.equal(events.length,16);assert.equal(new Set(events.map(e=>e.slug)).size,16);assert.equal(packages.length,3);assert.equal(site.phone,'917075505617');assert.ok(gallery.every(g=>g.alt&&g.category));
+for(const e of recentEvents){assert.match(e.slug,/^[a-z0-9]+(?:-[a-z0-9]+)*$/);assert.ok(e.title&&e.summary&&e.coverImage);}
+await walk(root);console.log(`PASS: ${pages} pages, ${links} local links/assets, ${images} images; metadata, image alt text, event data and every WhatsApp number/message verified.`);

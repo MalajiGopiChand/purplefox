@@ -1,0 +1,3 @@
+User-agent: *
+Allow: /
+Sitemap: https://purple-fox-celebrations.snappy-hawk-7137.chatgpt.site/sitemap.xml
