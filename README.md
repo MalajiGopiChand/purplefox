@@ -63,7 +63,7 @@ The form validates required fields, phone digits and a non-past date. It builds 
 
 ## AI assets
 
-Six images were created with the built-in image generation tool, converted locally to WebP and included in `dist/images/`. They are clearly labelled as styling inspiration. See `IMAGE-PROMPTS.md` for the prompt set.
+Sixteen unique images were generated and optimized locally as WebP assets in `dist/images/` so that every single event category has its own distinct, bespoke visual concept with zero duplicates. They are clearly labelled as styling inspiration. See `IMAGE-PROMPTS.md` for the prompt set.
 
 ## Hosting and SEO
 
