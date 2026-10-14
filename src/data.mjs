@@ -48,7 +48,9 @@ export const gallery = [
   { image: 'religious', title: 'Sacred Lotus & Brass Sanctuary', category: 'Religious', alt: 'AI concept of a traditional sacred pooja ceremony with lotus flowers and brass oil lamps' },
   { image: 'private', title: 'Intimate Sunset Celebration', category: 'Other Events', alt: 'AI concept of an intimate private gathering with candlelit dinner styling' },
   { image: 'college', title: 'Milestone Fest & Stage', category: 'Other Events', alt: 'AI concept of a dynamic college fest stage with lighting and banners' },
-  { image: 'cultural', title: 'Heritage & Classical Splendour', category: 'Other Events', alt: 'AI concept of a rich traditional Indian cultural event stage with floral garlands and brass lamps' }
+  { image: 'cultural', title: 'Heritage & Classical Splendour', category: 'Other Events', alt: 'AI concept of a rich traditional Indian cultural event stage with floral garlands and brass lamps' },
+  { image: 'our-story', title: 'Violet Ballroom & Floral Arch', category: 'Weddings', alt: 'Purple Fox luxury event styling with circular floral arch and violet banquet lighting' },
+  { image: 'our-story-arch', title: 'Illuminated Celebration Stage', category: 'Corporate', alt: 'Luxury celebration stage with circular floral arch and ambient fairy lights' }
 ];
 
 export const recentEvents = []; // Add only approved, completed client events. See README.md.

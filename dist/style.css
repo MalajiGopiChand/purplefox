@@ -1898,6 +1898,435 @@ form > .btn {
   margin-bottom: 20px;
 }
 
+/* Our Story Specific Sections */
+.story-hero {
+  max-width: 900px;
+  margin-inline: auto;
+  text-align: center;
+}
+
+.story-lead {
+  margin-top: 28px;
+  text-align: left;
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+}
+
+.story-lead p {
+  font-size: 16px;
+  line-height: 1.8;
+}
+
+.story-highlight {
+  font-family: var(--serif);
+  font-size: 24px !important;
+  font-style: italic;
+  color: var(--plum) !important;
+  padding: 18px 26px;
+  background: rgba(111, 44, 143, 0.05);
+  border-left: 3.5px solid var(--gold);
+  border-radius: 0 14px 14px 0;
+  margin-top: 10px;
+}
+
+.approach-copy h2 {
+  margin-bottom: 20px;
+}
+
+.approach-copy p {
+  margin-bottom: 16px;
+  font-size: 15px;
+  line-height: 1.8;
+}
+
+.story-quote {
+  font-family: var(--serif);
+  font-size: 22px !important;
+  font-style: italic;
+  color: var(--purple) !important;
+  border-left: 3.5px solid var(--purple);
+  padding-left: 20px;
+  margin: 26px 0 !important;
+  line-height: 1.5;
+}
+
+.approach-cta {
+  margin-top: 28px;
+}
+
+/* What We Do Grid (8 Cards) */
+.what-we-do-section {
+  padding-block: 90px;
+}
+
+.what-we-do-grid {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 24px;
+  margin-top: 40px;
+}
+
+.what-card {
+  background: var(--ivory);
+  border: 1px solid var(--line);
+  border-radius: 20px;
+  padding: 28px 24px;
+  box-shadow: var(--shadow-sm);
+  display: flex;
+  flex-direction: column;
+  transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.3s, border-color 0.3s;
+}
+
+.what-card:hover {
+  transform: translateY(-5px);
+  box-shadow: var(--shadow-md);
+  border-color: #caa8d6;
+}
+
+.what-icon {
+  font-size: 20px;
+  color: var(--gold);
+  margin-bottom: 12px;
+  display: inline-block;
+}
+
+.what-card h3 {
+  font-family: var(--serif);
+  font-size: 22px;
+  margin-bottom: 12px;
+  line-height: 1.25;
+}
+
+.what-card h3 a {
+  color: var(--plum);
+  transition: color 0.2s;
+}
+
+.what-card h3 a:hover {
+  color: var(--purple);
+}
+
+.what-card p {
+  font-size: 13.5px;
+  line-height: 1.65;
+  color: var(--muted);
+  margin-bottom: 20px;
+  flex: 1;
+}
+
+.what-card .text-link {
+  margin-top: auto;
+  font-size: 12.5px;
+}
+
+.what-we-do-footer {
+  margin-top: 50px;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 16px;
+}
+
+.what-we-do-footer p {
+  font-size: 16px;
+  color: var(--plum);
+  font-weight: 500;
+}
+
+/* Creative Signature Grid */
+.signature-section {
+  padding-block: 90px;
+}
+
+.signature-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 26px;
+  margin-top: 40px;
+}
+
+.signature-card {
+  background: var(--ivory);
+  border: 1px solid var(--line);
+  border-radius: 20px;
+  padding: 34px 28px;
+  box-shadow: var(--shadow-sm);
+  transition: transform 0.3s, box-shadow 0.3s;
+}
+
+.signature-card:hover {
+  transform: translateY(-4px);
+  box-shadow: var(--shadow-md);
+  border-color: #caa8d6;
+}
+
+.signature-badge {
+  display: inline-block;
+  font-family: var(--serif);
+  font-size: 34px;
+  font-style: italic;
+  color: var(--purple);
+  margin-bottom: 12px;
+}
+
+.signature-card h3 {
+  font-size: 22px;
+  margin-bottom: 12px;
+  color: var(--plum);
+}
+
+.signature-card p {
+  font-size: 14px;
+  line-height: 1.7;
+  color: var(--muted);
+}
+
+/* Process Five Steps */
+.process-section {
+  padding-block: 90px;
+}
+
+.five-steps {
+  display: grid;
+  grid-template-columns: repeat(5, minmax(0, 1fr));
+  gap: 20px;
+  margin-top: 44px;
+}
+
+.step-card {
+  background: var(--ivory);
+  border: 1px solid var(--line);
+  border-radius: 18px;
+  padding: 26px 20px;
+  box-shadow: var(--shadow-sm);
+  display: flex;
+  flex-direction: column;
+  transition: transform 0.3s, box-shadow 0.3s;
+}
+
+.step-card:hover {
+  transform: translateY(-4px);
+  box-shadow: var(--shadow-md);
+  border-color: #caa8d6;
+}
+
+.step-num {
+  display: inline-block;
+  font-family: var(--serif);
+  font-size: 34px;
+  font-style: italic;
+  color: var(--purple);
+  margin-bottom: 10px;
+}
+
+.step-card h3 {
+  font-size: 18px;
+  margin-bottom: 10px;
+  color: var(--plum);
+  line-height: 1.25;
+}
+
+.step-card p {
+  font-size: 12.5px;
+  line-height: 1.6;
+  color: var(--muted);
+}
+
+.process-note {
+  text-align: center;
+  font-size: 14.5px;
+  font-style: italic;
+  color: var(--plum);
+  margin-top: 36px;
+}
+
+/* Values Grid */
+.values-section {
+  padding-block: 90px;
+}
+
+.values-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 30px;
+  margin-top: 40px;
+}
+
+.value-card {
+  background: var(--ivory);
+  border: 1px solid var(--line);
+  border-radius: 20px;
+  padding: 38px 28px;
+  text-align: center;
+  box-shadow: var(--shadow-sm);
+  transition: transform 0.3s, box-shadow 0.3s;
+}
+
+.value-card:hover {
+  transform: translateY(-4px);
+  box-shadow: var(--shadow-md);
+  border-color: #caa8d6;
+}
+
+.value-symbol {
+  font-size: 32px;
+  color: var(--gold);
+  display: block;
+  margin-bottom: 14px;
+}
+
+.value-card h3 {
+  font-size: 24px;
+  margin-bottom: 12px;
+  color: var(--plum);
+}
+
+.value-card p {
+  font-size: 14px;
+  line-height: 1.7;
+  color: var(--muted);
+}
+
+/* Why Purple Fox Grid */
+.why-section {
+  padding-block: 90px;
+}
+
+.why-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 26px;
+  margin-top: 40px;
+}
+
+.why-card {
+  background: var(--ivory);
+  border: 1px solid var(--line);
+  border-radius: 18px;
+  padding: 28px 24px;
+  box-shadow: var(--shadow-sm);
+  transition: transform 0.3s, box-shadow 0.3s;
+}
+
+.why-card:hover {
+  transform: translateY(-4px);
+  box-shadow: var(--shadow-md);
+  border-color: #caa8d6;
+}
+
+.why-card h3 {
+  font-size: 20px;
+  margin-bottom: 10px;
+  color: var(--plum);
+}
+
+.why-card p {
+  font-size: 13.5px;
+  line-height: 1.65;
+  color: var(--muted);
+}
+
+/* Magic Section */
+.magic-section {
+  padding-block: 90px;
+}
+
+.magic-layout {
+  display: grid;
+  grid-template-columns: 1.1fr 1fr;
+  gap: 60px;
+  align-items: center;
+}
+
+.magic-copy h2 {
+  margin-bottom: 20px;
+}
+
+.magic-copy p {
+  font-size: 15.5px;
+  line-height: 1.8;
+  margin-bottom: 18px;
+}
+
+.magic-copy .btn {
+  margin-top: 14px;
+}
+
+.magic-image img {
+  height: 480px;
+  width: 100%;
+  object-fit: cover;
+  border-radius: 28px;
+  box-shadow: var(--shadow-lg);
+}
+
+.faq-section {
+  padding-top: 40px;
+}
+
+/* Unified Card Typography & Card Covers (All cards share identical fonts & rhythm) */
+.event-card h3,
+.what-card h3,
+.signature-card h3,
+.why-card h3,
+.step-card h3,
+.value-card h3,
+.collection-link h3 {
+  font-family: var(--serif) !important;
+  font-weight: 500 !important;
+  color: var(--plum) !important;
+  letter-spacing: -0.3px;
+  line-height: 1.25;
+}
+
+.event-card p,
+.what-card p,
+.signature-card p,
+.why-card p,
+.step-card p,
+.value-card p,
+.collection-link p,
+.package p {
+  font-family: var(--sans) !important;
+  font-size: 13.5px !important;
+  line-height: 1.68 !important;
+  color: var(--muted) !important;
+}
+
+.event-card .text-link,
+.what-card .text-link,
+.collection-link .text-link {
+  font-family: var(--sans) !important;
+  font-size: 12.5px !important;
+  font-weight: 600 !important;
+  color: var(--purple) !important;
+}
+
+/* Card Covers Polish */
+.card-photo {
+  height: 250px !important;
+  border-radius: 20px 20px 0 0 !important;
+}
+
+.card-photo img {
+  height: 100% !important;
+  width: 100% !important;
+  object-fit: cover !important;
+}
+
+.package > img {
+  height: 240px !important;
+  border-radius: 24px 24px 0 0 !important;
+}
+
+.gallery-item img {
+  height: 380px !important;
+  width: 100% !important;
+  object-fit: cover !important;
+}
+
 /* Responsive Media Queries */
 @media (min-width: 1600px) {
   .hero-copy {
@@ -1944,6 +2373,12 @@ form > .btn {
   }
   .masonry {
     columns: 2;
+  }
+  .what-we-do-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  .five-steps {
+    grid-template-columns: repeat(3, 1fr);
   }
   .footer-grid {
     gap: 32px;
@@ -2064,6 +2499,22 @@ form > .btn {
   .footer-grid {
     grid-template-columns: 1fr 1fr;
     gap: 36px;
+  }
+  .five-steps {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  .signature-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  .values-grid, .why-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  .magic-layout {
+    grid-template-columns: 1fr;
+    gap: 40px;
+  }
+  .magic-image img {
+    height: 400px;
   }
 }
 

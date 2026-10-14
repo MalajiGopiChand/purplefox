@@ -58,7 +58,7 @@ if (slides.length > 1) {
   function startAutoSlide() {
     slideInterval = setInterval(() => {
       setSlide(slideIndex + 1);
-    }, 6000);
+    }, 5000);
   }
 
   function resetAutoSlide() {
@@ -70,6 +70,19 @@ if (slides.length > 1) {
   if (heroSec) {
     heroSec.addEventListener('mouseenter', () => clearInterval(slideInterval));
     heroSec.addEventListener('mouseleave', startAutoSlide);
+
+    let heroTouchX = 0;
+    heroSec.addEventListener('touchstart', e => {
+      heroTouchX = e.changedTouches[0].clientX;
+    }, { passive: true });
+
+    heroSec.addEventListener('touchend', e => {
+      const diffX = e.changedTouches[0].clientX - heroTouchX;
+      if (Math.abs(diffX) > 45) {
+        setSlide(slideIndex + (diffX < 0 ? 1 : -1));
+        resetAutoSlide();
+      }
+    }, { passive: true });
   }
 
   startAutoSlide();
