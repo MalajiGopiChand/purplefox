@@ -47,13 +47,14 @@ The current owner-private audience is preserved. Google Fonts has system fallbac
 
 Activate in Vercel > project Settings > Environment Variables (Production), then redeploy:
 
-1. `OPENAI_API_KEY`: a project API key with image-edit access and funded billing.
-2. `TURNSTILE_SITE_KEY` and `TURNSTILE_SECRET_KEY`: Cloudflare Turnstile widget keys. Allow `purplefox-ten.vercel.app` in the widget hostname list.
-3. `PREVIEW_ALLOWED_ORIGIN`: `https://purplefox-ten.vercel.app` (exact origin, no trailing slash).
-4. Optional `OPENAI_IMAGE_MODEL`: defaults to `gpt-image-1.5`.
+1. `OPENAI_API_KEY`: a project API key with image-edit access and funded billing. This is the only required variable for the existing production domain.
+2. Optional `PREVIEW_ALLOWED_ORIGIN`: defaults to `https://purplefox-ten.vercel.app`. Set an exact origin without trailing slash if using a different domain.
+3. Optional `OPENAI_IMAGE_MODEL`: defaults to `gpt-image-1.5`.
 
-Keep keys in Vercel or an ignored local `.env`, never in chat, Git or frontend assets. Without all required settings the page explains that generation is unavailable; it never substitutes a fake result. Turnstile tokens are verified server-side, including hostname and action, and are single use. Configure provider usage alerts and Vercel Firewall rate limits before opening this paid endpoint to heavy traffic; Turnstile is bot protection, not a financial quota.
+Turnstile is removed at the owner's request. No CAPTCHA or verification keys are needed. The endpoint retains upload validation, consent, origin checking, timeouts and secret-safe errors. Origin checking is not authentication or a spending limit. Set Vercel Firewall rate limits and monitor OpenAI usage for this public paid endpoint.
 
-Local development: set the same variables with localhost as the allowed origin and a Turnstile widget configured for localhost, then run `node --env-file=.env server.mjs`. `npm start` works without AI configuration and shows the unavailable state. `node --test preview.test.mjs` verifies validation, no-secret errors, verification rejection, correct image order and upstream failure handling using mocked providers; it does not spend API credits. A live generation still needs to be verified after credentials are configured.
+Keep keys in Vercel or an ignored local `.env`, never in chat, Git or frontend assets. Revoke and replace any key exposed in chat. Without an API key the page states that generation is unavailable; it never substitutes a fake result.
 
-The existing ChatGPT Sites static manifest does not run Vercel functions. The AI feature is deployed on Vercel; using it on a separate static host needs its own compatible backend. Provider reference: https://developers.openai.com/api/reference/resources/images/methods/edit .
+Local development: put `OPENAI_API_KEY` and `PREVIEW_ALLOWED_ORIGIN=http://localhost:4173` in an ignored `.env`, then run `node --env-file=.env server.mjs`. `npm start` also works without AI configuration. `node --test preview.test.mjs` uses mocked providers and spends no API credits. Live generation still needs to be verified after credentials are configured.
+
+The existing ChatGPT Sites static manifest does not run Vercel functions. This AI feature runs on Vercel; another static host needs a compatible backend. Provider reference: https://developers.openai.com/api/reference/resources/images/methods/edit .

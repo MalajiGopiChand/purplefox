@@ -3,23 +3,22 @@ import {decorStyles} from '../lib/decor-styles.mjs';
 export const config={maxDuration:300};
 const MAX_BODY=3_000_000;
 const send=(res,status,data)=>{res.statusCode=status;res.setHeader('Content-Type','application/json');res.setHeader('Cache-Control','no-store');res.end(JSON.stringify(data));};
-export const ready=(env)=>Boolean(env.OPENAI_API_KEY&&env.TURNSTILE_SECRET_KEY&&env.TURNSTILE_SITE_KEY&&env.PREVIEW_ALLOWED_ORIGIN);
+export const ready=(env)=>Boolean(env.OPENAI_API_KEY);
 export function validateInput(body){
  const style=decorStyles.find(s=>s.id===body?.style);
  if(!style)throw new Error('Choose a valid décor style.');
  if(body.consent!==true)throw new Error('Please agree to photo processing before generating.');
  if(typeof body.notes!=='string'||body.notes.length>500)throw new Error('Keep your notes under 500 characters.');
- if(typeof body.token!=='string'||!body.token||body.token.length>2048)throw new Error('Complete the verification and try again.');
  if(typeof body.image!=='string'||body.image.length>2_800_000||!/^data:image\/jpeg;base64,[A-Za-z0-9+/]+={0,2}$/.test(body.image))throw new Error('Choose a valid venue photo again.');
  const bytes=Buffer.from(body.image.split(',')[1],'base64');
  if(bytes.length>2_000_000||bytes.length<100||bytes[0]!==255||bytes[1]!==216||bytes[2]!==255)throw new Error('The venue photo could not be read. Choose another JPG, PNG or WebP.');
  return {style,bytes,notes:body.notes.trim()};
 }
 export function createHandler({env=process.env,fetcher=fetch,readAsset=readFile}={}){return async(req,res)=>{
- if(req.method==='GET')return send(res,200,{available:ready(env),siteKey:ready(env)?env.TURNSTILE_SITE_KEY:null});
+ if(req.method==='GET')return send(res,200,{available:ready(env)});
  if(req.method!=='POST'){res.setHeader('Allow','GET, POST');return send(res,405,{error:'Method not allowed.'});}
  if(!ready(env))return send(res,503,{error:'AI previews are not available yet. Please contact Purple Fox to discuss your venue.'});
- if(req.headers.origin!==env.PREVIEW_ALLOWED_ORIGIN)return send(res,403,{error:'Please use the preview page on our website.'});
+ if(req.headers.origin!==(env.PREVIEW_ALLOWED_ORIGIN||'https://purplefox-ten.vercel.app'))return send(res,403,{error:'Please use the preview page on our website.'});
  if(!String(req.headers['content-type']||'').startsWith('application/json'))return send(res,415,{error:'Unsupported upload format.'});
  if(Number(req.headers['content-length'])>MAX_BODY)return send(res,413,{error:'This photo is too large. Choose a smaller image.'});
  let input;
@@ -27,12 +26,9 @@ export function createHandler({env=process.env,fetcher=fetch,readAsset=readFile}
   let body=req.body;
   if(body===undefined){let raw='';for await(const chunk of req){raw+=chunk;if(Buffer.byteLength(raw)>MAX_BODY)return send(res,413,{error:'This photo is too large.'});}body=raw;}
   if(typeof body==='string'){if(Buffer.byteLength(body)>MAX_BODY)return send(res,413,{error:'This photo is too large.'});body=JSON.parse(body);}
-  input={...validateInput(body),token:body.token};
- }catch{return send(res,400,{error:'Check your photo, selected décor, consent and verification, then try again.'});}
+  input=validateInput(body);
+ }catch{return send(res,400,{error:'Check your photo, selected décor, consent, then try again.'});}
  try{
-  const verify=await fetcher('https://challenges.cloudflare.com/turnstile/v0/siteverify',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({secret:env.TURNSTILE_SECRET_KEY,response:input.token}),signal:AbortSignal.timeout(15000)});
-  const check=await verify.json();
-  if(!verify.ok||!check.success||check.hostname!==new URL(env.PREVIEW_ALLOWED_ORIGIN).hostname||check.action!=='decor-preview')return send(res,403,{error:'Verification expired or failed. Please verify again.'});
   const reference=await readAsset(new URL('../dist/images/'+input.style.image+'.webp',import.meta.url));
   const form=new FormData();
   form.append('model',env.OPENAI_IMAGE_MODEL||'gpt-image-1.5');form.append('n','1');form.append('size','1536x1024');form.append('quality','medium');form.append('output_format','jpeg');form.append('output_compression','80');
