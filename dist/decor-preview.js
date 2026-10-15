@@ -1,0 +1,33 @@
+(()=>{
+ const $=id=>document.getElementById(id);if(!$('decor-studio'))return;
+ let venue='',result='',style='wedding',styleTitle='Lavender wedding',ready=false,busy=false,token='',widget,uploadRevision=0;
+ const status=text=>$('preview-status').textContent=text;
+ const canGenerate=()=>{$('generate-preview').disabled=!ready||!venue||!token||!$('preview-consent').checked||busy;};
+ function view(after){$('venue-preview').hidden=after||!venue;$('generated-preview').hidden=!after||!result;$('preview-empty').hidden=!!venue;$('show-before').setAttribute('aria-pressed',String(!after));$('show-after').setAttribute('aria-pressed',String(after));}
+ function clearResult(){result='';$('generated-preview').removeAttribute('src');$('download-preview').removeAttribute('href');$('show-after').disabled=true;document.querySelector('.studio-result-actions').hidden=true;document.querySelector('.studio-sharing').hidden=true;view(false);}
+ function resetToken(){token='';if(widget!==undefined&&window.turnstile)window.turnstile.reset(widget);canGenerate();}
+ function setBusy(value){busy=value;document.querySelector('.studio-canvas').setAttribute('aria-busy',String(value));$('preview-loading').hidden=!value;document.querySelectorAll('.studio-controls input,.studio-controls textarea,.decor-option,#clear-studio,#remove-venue').forEach(el=>el.disabled=value);canGenerate();}
+ async function upload(file){const revision=++uploadRevision;clearResult();venue='';$('venue-preview').removeAttribute('src');$('remove-venue').hidden=true;view(false);canGenerate();if(!file)return;
+  if(!['image/jpeg','image/png','image/webp'].includes(file.type)||file.size>10*1024*1024){$('upload-status').textContent='Choose a JPG, PNG or WebP smaller than 10 MB.';return;}
+  $('upload-status').textContent='Preparing your photo…';let url=URL.createObjectURL(file);
+  try{const image=new Image();image.src=url;await image.decode();if(revision!==uploadRevision)return;if(image.width*image.height>50_000_000)throw Error('Image too large');
+   const scale=Math.min(1,1600/Math.max(image.width,image.height));const canvas=document.createElement('canvas');canvas.width=Math.round(image.width*scale);canvas.height=Math.round(image.height*scale);const context=canvas.getContext('2d');context.fillStyle='#fff';context.fillRect(0,0,canvas.width,canvas.height);context.drawImage(image,0,0,canvas.width,canvas.height);venue=canvas.toDataURL('image/jpeg',.82);if(venue.length>2_700_000)throw Error('Image too large');
+   $('venue-preview').src=venue;$('remove-venue').hidden=false;$('upload-status').textContent='Photo ready. It stays on your device until you generate.';view(false);canGenerate();
+  }catch{if(revision===uploadRevision){venue='';$('upload-status').textContent='We could not read that photo. Please choose a smaller JPG, PNG or WebP.';canGenerate();}}finally{URL.revokeObjectURL(url);}
+ }
+ $('venue-file').addEventListener('change',e=>upload(e.target.files[0]));
+ document.querySelectorAll('.decor-option').forEach(button=>button.addEventListener('click',()=>{if(busy)return;style=button.dataset.style;styleTitle=button.querySelector('strong').textContent;$('selected-style').textContent=styleTitle;document.querySelectorAll('.decor-option').forEach(b=>b.setAttribute('aria-pressed',String(b===button)));clearResult();}));
+ $('decor-notes').addEventListener('input',clearResult);$('preview-consent').addEventListener('change',canGenerate);
+ $('show-before').addEventListener('click',()=>view(false));$('show-after').addEventListener('click',()=>view(true));
+ function clear(){if(busy)return;++uploadRevision;venue='';$('venue-file').value='';$('venue-preview').removeAttribute('src');$('remove-venue').hidden=true;$('upload-status').textContent='A wide, well-lit photo without people works best.';clearResult();canGenerate();}
+ $('remove-venue').addEventListener('click',clear);$('clear-studio').addEventListener('click',()=>{clear();$('decor-notes').value='';$('preview-consent').checked=false;resetToken();});
+ $('generate-preview').addEventListener('click',async()=>{if(busy||!venue||!ready||!token||!$('preview-consent').checked)return;setBusy(true);clearResult();status('Creating your preview. This may take a few minutes…');
+  try{const response=await fetch('/api/decor-preview',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({image:venue,style,notes:$('decor-notes').value,consent:true,token}),signal:AbortSignal.timeout(260000)});const data=await response.json().catch(()=>({}));if(!response.ok)throw Error(data.error||'The preview service is unavailable. Please try again later.');if(!/^data:image\/jpeg;base64,[A-Za-z0-9+/]+=*$/.test(data.image||''))throw Error('The preview could not be read. Please try again.');
+   result=data.image;$('generated-preview').src=result;await $('generated-preview').decode();$('show-after').disabled=false;$('download-preview').href=result;document.querySelector('.studio-result-actions').hidden=false;document.querySelector('.studio-sharing').hidden=false;$('discuss-preview').href='https://wa.me/917075505617?text='+encodeURIComponent('Hello Purple Fox Event Planners! I created a '+styleTitle+' décor preview for my venue. I will attach the downloaded image. Can we discuss the details?');view(true);status('Your AI preview is ready. Compare it with the original and download your favourite idea.');
+  }catch(error){clearResult();status(error.name==='TimeoutError'?'The preview took too long. Please try again later.':error.message);}finally{setBusy(false);resetToken();}
+ });
+ async function init(){try{const response=await fetch('/api/decor-preview',{cache:'no-store'});if(!response.ok)throw Error();const config=await response.json();if(!config.available){status('AI previews are not available yet. You can explore décor styles and contact us to discuss your venue.');return;}
+  const script=document.createElement('script');script.src='https://challenges.cloudflare.com/turnstile/v0/api.js?render=explicit';script.async=true;script.onerror=()=>status('Verification could not load. Check your connection and reload this page.');script.onload=()=>{widget=window.turnstile.render('#preview-verification',{sitekey:config.siteKey,action:'decor-preview',callback:value=>{token=value;canGenerate();},'expired-callback':()=>{token='';canGenerate();},'error-callback':()=>{token='';canGenerate();status('Verification failed. Please reload and try again.');}});ready=true;status('Choose your photo and décor, then agree to processing to create your preview.');canGenerate();};document.head.append(script);
+ }catch{status('The AI studio is temporarily unavailable. Please contact us about your venue.');}}
+ init();
+})();

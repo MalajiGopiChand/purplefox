@@ -1,3 +1,4 @@
+import decorPreview from './api/decor-preview.mjs';
 import http from 'node:http';
 import { readFile, stat } from 'node:fs/promises';
 import path from 'node:path';
@@ -24,6 +25,7 @@ export default async function handler(req, res) {
   try {
     const url = new URL(req.url, 'http://localhost');
     let pathname = decodeURIComponent(url.pathname);
+    if(pathname.replace(/\/$/,'')==='/api/decor-preview') return decorPreview(req,res);
     let target = path.resolve(root, '.' + pathname);
 
     if (!target.startsWith(root + path.sep) && target !== root) {

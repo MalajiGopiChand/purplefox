@@ -40,3 +40,20 @@ The enquiry form opens a prefilled WhatsApp draft with a fallback link. Visitors
 Existing site: https://purple-fox-celebrations.snappy-hawk-7137.chatgpt.site/
 
 The current owner-private audience is preserved. Google Fonts has system fallbacks. The production build is in `dist/`; directory index routes and `404.html` are supported.
+
+## AI venue preview
+
+`/decor-preview/` lets visitors upload a venue, select one of six references and request a realistic image edit. Uploads are resized to JPEG in the browser; requests and results are not stored by this app. AI output is illustrative, not a fit/measurement guarantee. The endpoint is a Vercel Node function, independent of the static page build.
+
+Activate in Vercel > project Settings > Environment Variables (Production), then redeploy:
+
+1. `OPENAI_API_KEY`: a project API key with image-edit access and funded billing.
+2. `TURNSTILE_SITE_KEY` and `TURNSTILE_SECRET_KEY`: Cloudflare Turnstile widget keys. Allow `purplefox-ten.vercel.app` in the widget hostname list.
+3. `PREVIEW_ALLOWED_ORIGIN`: `https://purplefox-ten.vercel.app` (exact origin, no trailing slash).
+4. Optional `OPENAI_IMAGE_MODEL`: defaults to `gpt-image-1.5`.
+
+Keep keys in Vercel or an ignored local `.env`, never in chat, Git or frontend assets. Without all required settings the page explains that generation is unavailable; it never substitutes a fake result. Turnstile tokens are verified server-side, including hostname and action, and are single use. Configure provider usage alerts and Vercel Firewall rate limits before opening this paid endpoint to heavy traffic; Turnstile is bot protection, not a financial quota.
+
+Local development: set the same variables with localhost as the allowed origin and a Turnstile widget configured for localhost, then run `node --env-file=.env server.mjs`. `npm start` works without AI configuration and shows the unavailable state. `node --test preview.test.mjs` verifies validation, no-secret errors, verification rejection, correct image order and upstream failure handling using mocked providers; it does not spend API credits. A live generation still needs to be verified after credentials are configured.
+
+The existing ChatGPT Sites static manifest does not run Vercel functions. The AI feature is deployed on Vercel; using it on a separate static host needs its own compatible backend. Provider reference: https://developers.openai.com/api/reference/resources/images/methods/edit .
