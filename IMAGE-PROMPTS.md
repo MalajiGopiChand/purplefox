@@ -18,3 +18,25 @@ Tool: built-in AI image generation. Style: photorealistic editorial event inspir
 - `dist/images/private.webp`: Intimate private celebration dining concept with candlelit tables, brass candleholders, fine glassware, and subtle evening ambiance. Photorealistic editorial photography. No people, no text, no watermark.
 - `dist/images/college.webp`: Energetic youth and college milestone fest stage with dynamic lighting trusses, vibrant backdrop banners, and contemporary event staging. Photorealistic editorial photography. No people, no text, no watermark.
 - `dist/images/cultural.webp`: Heritage Indian cultural and classical performance stage with traditional brass tall lamps, floral garlands, and artistic tapestry. Photorealistic editorial photography. No people, no text, no watermark.
+
+## October redesign: 15 additional original images
+
+Generated as independent premium photorealistic editorial compositions, landscape 1536 x 1024, optimized to WebP. All briefs prohibit lettering, logos and watermarks. Palette references are cream, plum and lavender with scene-specific accent colours. These are fictional styling concepts, not client work.
+
+- `dist/images/v2-home-garden.webp`: Airy ivory and lavender wedding pavilion amid lush gardens, abundant natural flowers, warm sunlight, premium architectural event photography.
+- `dist/images/v2-home-birthday.webp`: Peach and lilac birthday dessert installation, sculptural balloon forms, textured backdrop and beautifully styled cake table.
+- `dist/images/v2-home-gala.webp`: Midnight-blue gala ballroom, sophisticated dinner tables, dramatic ceiling lights and elegant contemporary staging.
+- `dist/images/v2-story-moodboard.webp`: Overhead tactile event moodboard with fabric swatches, floral samples, sketches and subtle lavender materials.
+- `dist/images/v2-story-florist.webp`: Close editorial view of hands arranging a bouquet of garden flowers, natural light and authentic floral textures.
+- `dist/images/v2-story-table.webp`: Intimate lavender place setting, layered plates, linen napkin, delicate flowers and glassware, refined natural light.
+- `dist/images/v2-package-essential.webp`: Intimate veranda lunch with simple considered florals, warm daylight and relaxed hospitality.
+- `dist/images/v2-package-signature.webp`: Romantic glasshouse reception with abundant floral details, considered tables and warm evening light.
+- `dist/images/v2-package-royal.webp`: Grand palace courtyard celebration, luxurious floral installations, elegant seating and luminous architecture.
+- `dist/images/v2-contact-flowers.webp`: Artful floral still life, cream and lavender blooms, soft background and a welcoming editorial mood.
+- `dist/images/v2-feature-coastal.webp`: Sunset seaside reception with airy fabrics, beautifully set tables, open horizon and warm coastal light.
+- `dist/images/v2-feature-courtyard.webp`: Joyful haldi celebration in a terracotta courtyard with marigolds, warm architectural textures and natural human atmosphere.
+- `dist/images/v2-college.webp`: Outdoor university amphitheater event, abstract contemporary stage geometry, vibrant lighting, festive atmosphere, no readable signage.
+- `dist/images/v2-cultural.webp`: Classical cultural performance stage in a carved-pillared heritage hall, traditional flowers and lamps, no shrine or deity.
+- `dist/images/v2-private.webp`: Intimate burgundy rooftop dinner with city skyline at dusk, candlelight, sumptuous linen and refined table styling.
+
+The new college, cultural and private photographs replace cropped variations used previously. The cropped story arch is removed from the gallery. Original unused assets may remain in source history; visible pages use distinct compositions.

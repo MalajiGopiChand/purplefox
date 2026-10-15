@@ -1,10 +1,10 @@
 # Purple Fox Event Planners
 
-A complete, responsive static website with 26 generated pages, 16 event categories, a filterable inspiration gallery, accessible lightbox, celebration packages and a WhatsApp enquiry form. No database, login, admin panel or payment system.
+Responsive editorial website with 29 generated pages, 16 celebration categories, 29 distinct AI concept photographs, a filterable gallery and accessible lightbox, three design journal articles, collections comparison and a WhatsApp enquiry form.
 
-## Run and build
+## Build and preview
 
-Requires Node.js 22 or later. No npm dependencies or installation required.
+Requires Node.js 22+. No installation or dependencies needed.
 
 ```sh
 npm run build
@@ -12,59 +12,31 @@ npm run check
 npm start
 ```
 
-Preview at http://127.0.0.1:4173. Upload `dist/` to any static host. Directory index routes must be supported; use `dist/404.html` as the error document. Site publication configuration is in `.openai/hosting.json`.
+Preview at http://127.0.0.1:4173. Deploy configuration is in `.openai/hosting.json`. Preserve its existing project ID and the current site URL when publishing updates.
 
-The implementation uses generated HTML, CSS and small vanilla JavaScript interactions. This keeps all pages crawlable and avoids framework/backend dependencies for this frontend-only site.
+## Content and design
 
-## Edit content
+- `src/data.mjs`: phone, Instagram, categories, gallery and collections.
+- `src/editorial.mjs`: detailed service content and design journal stories.
+- `src/pages.mjs`: page layouts and content.
+- `src/components.mjs`: shared accessible header, footer, cards and controls.
+- `src/style.css`: responsive cream/plum design, curved imagery and restrained motion.
+- `src/app.js`: navigation, optional slideshow, gallery filters, lightbox and enquiry validation.
+- `build.mjs`: static pages, SEO metadata, sitemap and versioned asset URLs.
+- `dist/images/`: local images preserved during builds.
 
-- `src/data.mjs`: business number, Instagram URL, event categories, gallery, package concepts and recent event records.
-- `build.mjs`: shared layouts and page templates.
-- `src/style.css`: colours, typography and responsive layouts.
-- `src/app.js`: navigation, manual hero carousel, filters, lightbox and enquiry form.
-- `dist/images/`: local WebP image assets. Keep this directory when rebuilding.
+The existing custom illustrated fox logo is retained. WhatsApp: +91 70755 05617. Instagram: https://www.instagram.com/purplefox_planners/.
 
-Run the build and check commands after changes. The build preserves image assets.
+Every photograph is labelled AI styling inspiration. No client events, testimonials, prices, address or experience statistics are invented. The former empty updates page at `/recent-events/` is now the Design journal, preserving the route. Real client work should be added only with approved photographs and accurate descriptions.
 
-## Current business details
+## Behaviour and checks
 
-WhatsApp / phone: **+91 70755 05617**. Instagram: **https://www.instagram.com/purplefox_planners/**.
+The enquiry form opens a prefilled WhatsApp draft with a fallback link. Visitors review and send it themselves. No enquiries are stored by this static website. Motion respects reduced-motion preferences; slideshow playback is opt-in. Phone navigation, gallery filtering, keyboard lightbox controls and focus restoration are supported.
 
-The official logo was not attached. The current header is a temporary text wordmark, not a recreation of the original logo. Replace the `brand` template in `build.mjs` with the supplied logo when available. The address, email and service area were not supplied, so none are fabricated. Customers are asked to provide their event city to confirm availability.
+`npm run check` validates every generated page, local links/assets, metadata, central WhatsApp number, image alt text, unique photo usage within each page and unique image bytes. Images may appear in relevant contexts across pages, but no page repeats a photograph.
 
-Package inclusions are explicitly labelled as discussion concepts; no prices, testimonials, experience statistics or completed client events are invented. Instagram links are provided without claiming a live feed or copying unverified posts.
+## Hosting
 
-## Add a completed event
+Existing site: https://purple-fox-celebrations.snappy-hawk-7137.chatgpt.site/
 
-Put approved photographs in `dist/images/` as `.webp` files. Add an object to `recentEvents` in `src/data.mjs`:
-
-```js
-{
-  slug: 'approved-event-slug',
-  title: 'Approved event title',
-  category: 'Weddings',
-  eventDate: '', // Optional, approved display date
-  location: '', // Optional, approved location
-  summary: 'An approved short summary.',
-  description: 'An approved event story.',
-  coverImage: 'photo-filename-without-extension',
-  galleryImages: [
-    {image:'second-photo-without-extension',alt:'Describe the actual photograph',title:'Photo caption'}
-  ],
-  published: true
-}
-```
-
-The recent-events listing and `/recent-events/[slug]/` detail page are generated automatically. Update the global image disclosure when real photographs are added, retaining clear labels on AI samples. Customer reviews should be added only after actual approved feedback is supplied.
-
-## Enquiry behaviour
-
-The form validates required fields, phone digits and a non-past date. It builds an encoded message to the central WhatsApp number and opens WhatsApp. A visible fallback link remains if a browser blocks the new tab. The visitor reviews and sends the message manually. No message is automatically sent and no entry is stored by the site.
-
-## AI assets
-
-Sixteen unique images were generated and optimized locally as WebP assets in `dist/images/` so that every single event category has its own distinct, bespoke visual concept with zero duplicates. They are clearly labelled as styling inspiration. See `IMAGE-PROMPTS.md` for the prompt set.
-
-## Hosting and SEO
-
-The registered Sites deployment is private by default. Public access must be configured before sharing with customers. Change `site.origin` to your final domain before rebuilding for another host. Page titles, descriptions, Open Graph metadata, organization schema, sitemap and robots are generated. Google Fonts loads Cormorant Garamond and Manrope; system fallbacks keep the site readable if unavailable.
+The current owner-private audience is preserved. Google Fonts has system fallbacks. The production build is in `dist/`; directory index routes and `404.html` are supported.
