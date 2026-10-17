@@ -24,11 +24,5 @@
         }
       ]
     }
-  ],
-  "functions": {
-    "api/decor-preview.mjs": {
-      "maxDuration": 300,
-      "includeFiles": "dist/images/{wedding,birthday,haldi,engagement,reception,baby}.webp"
-    }
-  }
+  ]
 }

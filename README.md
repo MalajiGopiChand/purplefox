@@ -1,10 +1,10 @@
 # Purple Fox Event Planners
 
-Responsive editorial website with 29 generated pages, 16 celebration categories, 29 distinct AI concept photographs, a filterable gallery and accessible lightbox, three design journal articles, collections comparison and a WhatsApp enquiry form.
+Responsive editorial website with 30 generated pages, 16 celebration categories, 29 distinct AI concept photographs, a filterable gallery and accessible lightbox, three design journal articles, collections comparison and a WhatsApp enquiry form.
 
 ## Build and preview
 
-Requires Node.js 22+. No installation or dependencies needed.
+Requires Node.js 22+. Run `npm ci` first to install the locked React, esbuild and browser background-removal dependencies.
 
 ```sh
 npm run build
@@ -41,20 +41,21 @@ Existing site: https://purple-fox-celebrations.snappy-hawk-7137.chatgpt.site/
 
 The current owner-private audience is preserved. Google Fonts has system fallbacks. The production build is in `dist/`; directory index routes and `404.html` are supported.
 
-## AI venue preview
+## Browser décor try-on (replacement editor)
 
-`/decor-preview/` lets visitors upload a venue, select one of six references and request a realistic image edit. Uploads are resized to JPEG in the browser; requests and results are not stored by this app. AI output is illustrative, not a fit/measurement guarantee. The endpoint is a Vercel Node function, independent of the static page build.
+The old OpenAI generation API, secret-key requirements and CAPTCHA flow have been removed. `/decor-preview/` now mounts a React editor adapted from the supplied component. The rest of the site remains static.
 
-Activate in Vercel > project Settings > Environment Variables (Production), then redeploy:
+- Upload venue and decoration photographs, or select one of six existing gallery concepts.
+- Optional IMG.LY background removal runs locally; the quantized model is downloaded from its vendor CDN on first use. User photos are not uploaded.
+- Drag, keyboard nudge, scale, rotate, change opacity and adjust horizontal/vertical position.
+- Before/After, reset transform, clear all photos, retry background removal or keep the original.
+- Export PNG, always including the decoration even when the Before view is selected.
+- Raster inputs up to 12 MB / 40 megapixels, normalized to 1600px. HEIC must be exported as JPG. Animated inputs use a still frame.
 
-1. `OPENAI_API_KEY`: a project API key with image-edit access and funded billing. This is the only required variable for the existing production domain.
-2. Optional `PREVIEW_ALLOWED_ORIGIN`: defaults to `https://purplefox-ten.vercel.app`. Set an exact origin without trailing slash if using a different domain.
-3. Optional `OPENAI_IMAGE_MODEL`: defaults to `gpt-image-1.5`.
+`src/studio/DecorTryOn.jsx` implements the editor. `geometry.mjs` holds drawing/hit-testing math, and `studio.css` scopes its styles. `build.mjs` bundles React and lazy AI chunks with content-hashed filenames. Use `npm run build`, `npm run check`, `node --test studio.test.mjs` and `npm start`.
 
-Turnstile is removed at the owner's request. No CAPTCHA or verification keys are needed. The endpoint retains upload validation, consent, origin checking, timeouts and secret-safe errors. Origin checking is not authentication or a spending limit. Set Vercel Firewall rate limits and monitor OpenAI usage for this public paid endpoint.
+This is a manual 2D composition, not perspective-aware generative scene editing. Complex stage backgrounds can confuse segmentation; transparent PNG artwork is the most predictable input. Cancelling ignores the in-progress AI result; an already-started local inference may finish in the background.
 
-Keep keys in Vercel or an ignored local `.env`, never in chat, Git or frontend assets. Revoke and replace any key exposed in chat. Without an API key the page states that generation is unavailable; it never substitutes a fake result.
+The requested IMG.LY dependency is AGPL-3.0. Its license and bundled React/ONNX license notices ship in `/studio-licenses.txt`, with an editor source link in the UI. Review the AGPL obligations for your commercial distribution or obtain an alternative license from IMG.LY. No commercial license is purchased by this implementation. Upstream: https://github.com/imgly/background-removal-js .
 
-Local development: put `OPENAI_API_KEY` and `PREVIEW_ALLOWED_ORIGIN=http://localhost:4173` in an ignored `.env`, then run `node --env-file=.env server.mjs`. `npm start` also works without AI configuration. `node --test preview.test.mjs` uses mocked providers and spends no API credits. Live generation still needs to be verified after credentials are configured.
-
-The existing ChatGPT Sites static manifest does not run Vercel functions. This AI feature runs on Vercel; another static host needs a compatible backend. Provider reference: https://developers.openai.com/api/reference/resources/images/methods/edit .
+The old server key is no longer used. Revoke the key previously pasted into chat and remove obsolete OpenAI variables from hosting settings when convenient. The Vercel build now serves a static site without a paid generation endpoint.

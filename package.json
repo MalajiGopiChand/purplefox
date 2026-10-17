@@ -1,1 +1,1 @@
-{"name":"purple-fox-event-planners","private":true,"type":"module","scripts":{"build":"node build.mjs","start":"node server.mjs","check":"node check.mjs"}}
+{"name":"purple-fox-event-planners","private":true,"type":"module","scripts":{"build":"node build.mjs","start":"node server.mjs","check":"node check.mjs"},"dependencies":{"@imgly/background-removal":"1.7.0","esbuild":"0.28.2","onnxruntime-web":"1.21.0","react":"19.3.1","react-dom":"19.3.1"}}
