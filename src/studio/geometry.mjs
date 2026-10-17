@@ -1,7 +1,7 @@
 export const DEFAULT_TRANSFORM={x:.5,y:.8,scale:.65,rotation:0,opacity:1,depth:0,tiltX:0,tiltY:0};
 export const clamp=(n,min=0,max=1)=>Math.max(min,Math.min(max,n));
 export function fitSize(width,height,max=1800){const ratio=Math.min(1,max/Math.max(width,height));return {width:Math.round(width*ratio),height:Math.round(height*ratio)};}
-export function decorBox(venue,decor,t){const width=venue.width*t.scale;return {width,height:decor.height*width/decor.width,x:t.x*venue.width,y:t.y*venue.height};}
+export function decorBox(venue,decor,t){const width=venue.width*t.scale;return {width,height:decor.height*width/decor.width,x:t.x*venue.width,y:(t.y+(t.depth||0)/500)*venue.height};}
 // Project a flat decoration in camera space, anchored at its bottom centre.
 export function projectPoint(u,v,venue,decor,t){const b=decorBox(venue,decor,t),rx=(t.tiltX||0)*Math.PI/180,ry=(t.tiltY||0)*Math.PI/180,r=t.rotation*Math.PI/180;const x=(u-.5)*b.width,y=(v-1)*b.height;const yy=y*Math.cos(rx),z=y*Math.sin(rx),xx=x*Math.cos(ry)+z*Math.sin(ry),zz=-x*Math.sin(ry)+z*Math.cos(ry);const focal=Math.max(venue.width,venue.height,b.width,b.height)*2;const perspective=focal/(focal*(1-(t.depth||0)/150)-zz);return {x:b.x+(xx*Math.cos(r)-yy*Math.sin(r))*perspective,y:b.y+(xx*Math.sin(r)+yy*Math.cos(r))*perspective};}
 export function hitDecor(p,venue,decor,t){const corners=[[0,0],[1,0],[1,1],[0,1]].map(([u,v])=>projectPoint(u,v,venue,decor,t));const x=p.x*venue.width,y=p.y*venue.height;let inside=false;for(let i=0,j=3;i<4;j=i++){const a=corners[i],b=corners[j];if(((a.y>y)!==(b.y>y))&&(x<(b.x-a.x)*(y-a.y)/(b.y-a.y)+a.x))inside=!inside;}return inside;}
