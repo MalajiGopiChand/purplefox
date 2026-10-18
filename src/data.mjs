@@ -49,7 +49,7 @@ export const gallery = [
   { image: 'v2-private', title: 'Intimate Sunset Celebration', category: 'Other Events', alt: 'AI concept of an intimate private gathering with candlelit dinner styling' },
   { image: 'v2-college', title: 'Milestone Fest & Stage', category: 'Other Events', alt: 'AI concept of a dynamic college fest stage with lighting and banners' },
   { image: 'v2-cultural', title: 'Heritage & Classical Splendour', category: 'Other Events', alt: 'AI concept of a rich traditional Indian cultural event stage with floral garlands and brass lamps' },
-  { image: 'our-story', title: 'Violet Ballroom & Floral Arch', category: 'Weddings', alt: 'Purple Fox luxury event styling with circular floral arch and violet banquet lighting' },
+  { image: 'our-story', title: 'Violet Ballroom & Floral Arch', category: 'Weddings', alt: 'AI concept of with circular floral arch and violet banquet lighting' },
 ];
 
 gallery.push(...[
