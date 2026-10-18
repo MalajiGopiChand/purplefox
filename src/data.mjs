@@ -3,7 +3,7 @@ export const site = {
   phone: '917075505617',
   displayPhone: '+91 70755 05617',
   instagram: 'https://www.instagram.com/purplefox_planners/',
-  origin: 'https://purple-fox-celebrations.snappy-hawk-7137.chatgpt.site'
+  origin: 'https://purplefox-ten.vercel.app'
 };
 
 export const events = [
