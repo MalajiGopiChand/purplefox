@@ -39,3 +39,15 @@ h2,.intro h2,.story-opening h2,.event-intro h2,.scope-copy h2,.faq h2,.contact-i
 h3,.card-body h3,.home-events h3,.journal-card h3,.steps h3,.value-grid h3,.idea-grid h3,.planning-note h3{font-size:var(--heading-md);line-height:1.2}
 .eyebrow,.mini-label,.form-step,.directory-heading>p,.collection-note,.journal-note,.occasion-strip,.hero-bottom>span{ text-transform:none;letter-spacing:.5px}
 .tryon-panel h2,.tryon-toolbar h2{font-size:var(--heading-md);line-height:1.2}
+/* Signature purple header across desktop and mobile. */
+.header{background:#48205e;border-bottom:1px solid #765481;color:#fffdf9}
+.header .wordmark,.header .wordmark small,.header nav a{color:#fffdf9}
+.header nav a:hover,.header nav a[aria-current]{color:#ead7b5}
+.header nav a[aria-current]:after{background:#dbc7a4}
+.header .brand-logo{background:#fffdf9;padding:2px}
+.header .header-cta{background:#2e103e;border-color:#dbc7a4;color:#fffdf9}
+.header .header-cta:hover{background:#220a30;border-color:#f3eadb;color:white}
+.header .menu-toggle{border-color:#bda5c7;background:#351545}
+.header .menu-toggle>span{background:#fffdf9}
+.header a:focus-visible,.header button:focus-visible{outline-color:#ead7b5}
+@media(max-width:1000px){.header nav{background:#48205e;border-bottom-color:#765481}.header nav a{border-bottom:1px solid #ffffff18}.header nav a:last-child{border-bottom:0}}
