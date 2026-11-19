@@ -1,1 +1,25 @@
-{"name":"purple-fox-event-planners","private":true,"type":"module","scripts":{"build":"node build.mjs","start":"node server.mjs","check":"node check.mjs"},"dependencies":{"@imgly/background-removal":"1.7.0","esbuild":"0.28.2","onnxruntime-web":"1.21.0","react":"19.3.1","react-dom":"19.3.1"}}
+{
+  "name": "purple-fox-event-planners",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "build": "node build.mjs",
+    "start": "node server.mjs",
+    "check": "node check.mjs",
+    "test": "node --test studio.test.mjs admin.test.mjs"
+  },
+  "dependencies": {
+    "@imgly/background-removal": "1.7.0",
+    "@supabase/supabase-js": "^2.119.1",
+    "esbuild": "0.28.2",
+    "exceljs": "^4.4.0",
+    "onnxruntime-web": "1.21.0",
+    "react": "19.3.1",
+    "react-dom": "19.3.1"
+  },
+  "overrides": {
+    "exceljs": {
+      "uuid": "^11.1.1"
+    }
+  }
+}

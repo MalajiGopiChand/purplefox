@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="520" height="680" viewBox="0 0 520 680" fill="none">
+<g stroke="#8c709d" stroke-width="1.8" opacity=".55">
+<path d="M90 680C100 545 205 452 255 310S328 105 460 40M145 542C73 454 82 349 24 294M219 404C336 425 400 366 491 333M282 242C218 159 242 93 205 26"/>
+<path d="M124 575c-71-15-91-53-89-95 48 8 88 37 89 95ZM172 498c-1-65 24-96 67-111 9 48-9 89-67 111ZM213 424c-74-13-99-50-103-91 57 9 89 35 103 91ZM249 328c6-57 30-87 73-96-2 49-22 79-73 96ZM301 211c-1-51 13-80 49-95 12 41-3 77-49 95ZM350 138c-40-16-56-44-55-78 35 8 56 34 55 78ZM374 115c33-4 56-24 64-56-39 4-60 22-64 56ZM103 427c-40-4-60-29-62-58 36 2 57 23 62 58ZM364 398c9-43 33-64 66-66-9 37-29 60-66 66ZM273 410c39 27 71 24 95 1-33-24-62-27-95-1Z" fill="#b7c3af" fill-opacity=".26"/>
+</g>
+<g fill="#d4abce" fill-opacity=".4" stroke="#a57c9f" stroke-width="1">
+<g transform="translate(247 275)"><ellipse cy="-28" rx="18" ry="34"/><ellipse cy="-28" rx="18" ry="34" transform="rotate(72)"/><ellipse cy="-28" rx="18" ry="34" transform="rotate(144)"/><ellipse cy="-28" rx="18" ry="34" transform="rotate(216)"/><ellipse cy="-28" rx="18" ry="34" transform="rotate(288)"/><circle r="11" fill="#ddbb83"/></g>
+<g transform="translate(115 481) scale(.7)"><ellipse cy="-28" rx="18" ry="34"/><ellipse cy="-28" rx="18" ry="34" transform="rotate(72)"/><ellipse cy="-28" rx="18" ry="34" transform="rotate(144)"/><ellipse cy="-28" rx="18" ry="34" transform="rotate(216)"/><ellipse cy="-28" rx="18" ry="34" transform="rotate(288)"/><circle r="11" fill="#ddbb83"/></g>
+<g transform="translate(444 56) scale(.55)"><ellipse cy="-28" rx="18" ry="34"/><ellipse cy="-28" rx="18" ry="34" transform="rotate(72)"/><ellipse cy="-28" rx="18" ry="34" transform="rotate(144)"/><ellipse cy="-28" rx="18" ry="34" transform="rotate(216)"/><ellipse cy="-28" rx="18" ry="34" transform="rotate(288)"/><circle r="11" fill="#ddbb83"/></g>
+</g><g fill="#c8a669" opacity=".65"><path d="m338 300 3-10 3 10 10 3-10 3-3 10-3-10-10-3Z"/><path d="m177 212 2-7 2 7 7 2-7 2-2 7-2-7-7-2Z"/><circle cx="412" cy="256" r="2"/><circle cx="195" cy="573" r="2"/></g></svg>
