@@ -21,6 +21,7 @@ Preview at http://127.0.0.1:4173. Deploy configuration is in `.openai/hosting.js
 - `src/pages.mjs`: page layouts and content.
 - `src/components.mjs`: shared accessible header, footer, cards and controls.
 - `src/style.css`: responsive cream/plum design, curved imagery and restrained motion.
+- `src/botanical.mjs`: transparent, code-drawn floral backgrounds across all pages, with swaying stems and drifting petals. The pause control remembers the choice for the browser session; reduced-motion preferences disable animation.
 - `src/app.js`: navigation, optional slideshow, gallery filters, lightbox and enquiry validation.
 - `build.mjs`: static pages, SEO metadata, sitemap and versioned asset URLs.
 - `dist/images/`: local images preserved during builds.

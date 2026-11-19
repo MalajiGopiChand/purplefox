@@ -6,6 +6,14 @@ document.addEventListener('click',e=>{if(!e.target.closest('.header'))closeMenu(
 document.addEventListener('keydown',e=>{if(e.key==='Escape'&&navigation.classList.contains('open')){closeMenu();menuButton.focus()}});
 window.matchMedia('(min-width:1001px)').addEventListener('change',e=>{if(e.matches)closeMenu()});
 const reducedMotion=window.matchMedia('(prefers-reduced-motion: reduce)');
+const floralToggle=document.querySelector('.floral-motion-toggle');
+if(floralToggle){
+  let paused=false;
+  try{paused=sessionStorage.getItem('purplefox-floral-paused')==='true'}catch{}
+  function setFloralMotion(value){paused=value;document.body.classList.toggle('floral-paused',paused);floralToggle.setAttribute('aria-pressed',String(paused));floralToggle.querySelector('.floral-motion-label').textContent=paused?'Play flowers':'Pause flowers'}
+  setFloralMotion(paused);
+  floralToggle.addEventListener('click',()=>{setFloralMotion(!paused);try{sessionStorage.setItem('purplefox-floral-paused',String(paused))}catch{}});
+}
 const slides=[...document.querySelectorAll('.hero-slide')];let slideIndex=0,timer=null;
 const play=document.querySelector('#slide-play');
 function setSlide(index){slideIndex=(index+slides.length)%slides.length;slides.forEach((s,i)=>{s.classList.toggle('active',i===slideIndex);s.setAttribute('aria-hidden',String(i!==slideIndex))});document.querySelector('#slide-number').textContent=`0${slideIndex+1} / 0${slides.length}`}

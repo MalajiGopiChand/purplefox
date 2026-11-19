@@ -94,3 +94,45 @@ dialog::backdrop{background:#201027b8;backdrop-filter:blur(5px)}
 @media(min-width:1001px) and (max-width:1400px){.header{flex-wrap:wrap;height:auto;min-height:118px;padding-block:12px;row-gap:5px}.header nav{order:3;flex-basis:100%;gap:20px}.header-cta{margin-left:auto}.header nav a{min-height:40px}}
 @media(max-width:900px){.admin-split{grid-template-columns:1fr}.admin-metrics{grid-template-columns:repeat(2,1fr)}.record-details{grid-template-columns:repeat(2,1fr)}.published-photo-grid{grid-template-columns:repeat(2,1fr)}}
 @media(max-width:600px){.admin-heading{display:block}.admin-heading>.text-link{margin-top:18px}.admin-toolbar{align-items:flex-start}.admin-filters{flex-direction:column}.admin-filters label:last-child{max-width:none}.admin-card{padding:20px}.admin-card-heading{flex-wrap:wrap}.admin-photo-grid,.published-photo-grid{grid-template-columns:1fr}.admin-login{padding:24px}.admin-split form{padding:20px}.admin-metrics{gap:12px}.admin-metrics article{padding:18px}.planning-background{background-size:auto,auto,260px auto,280px auto}.whatsapp-dialog{padding:24px}.header nav a{font-size:1rem}.header .header-cta{font-size:.75rem;padding-inline:12px}.header{gap:8px}.small-note{font-size:.875rem}}
+
+/* Living botanical backdrop: transparent vector florals and drifting CSS petals. */
+body{isolation:isolate;background:radial-gradient(ellipse at 8% 12%,#eee0f266,transparent 46%),radial-gradient(ellipse at 94% 56%,#f4dedc55,transparent 45%),#fcf9fd}
+.botanical-scene{position:fixed;inset:0;z-index:-1;overflow:hidden;pointer-events:none;contain:strict;color:#91659f}
+.botanical-spray{position:absolute;width:clamp(260px,31vw,470px);opacity:.3;transform-origin:18% 95%;animation:botanical-sway 24s ease-in-out infinite alternate}
+.botanical-spray svg{display:block;width:100%;height:auto;overflow:visible}
+.botanical-spray-left{left:-95px;top:6%;rotate:-14deg}
+.botanical-spray-right{right:-75px;top:-13%;scale:-1 1;rotate:9deg;animation-delay:-12s;opacity:.25;color:#a7779c}
+.botanical-spray-lower{right:-125px;bottom:-38%;rotate:-24deg;animation-delay:-6s;opacity:.2;color:#80608f}
+.botanical-blossom{transform-box:fill-box;transform-origin:center;animation:blossom-breathe 14s ease-in-out infinite alternate}
+.botanical-spray-right .botanical-blossom{animation-delay:-7s}
+.botanical-petals{position:absolute;inset:0}
+.botanical-petal{position:absolute;width:13px;height:22px;border:1px solid #ad87ba22;border-radius:80% 10% 70% 20%;background:linear-gradient(135deg,#d9b6de60,#f2d5dc30);animation:petal-drift 23s ease-in-out infinite alternate;opacity:.55}
+.petal-1{left:5%;top:23%;animation-delay:-6s;rotate:25deg}
+.petal-2{left:19%;top:61%;animation-delay:-14s;rotate:80deg;scale:.7}
+.petal-3{left:36%;top:13%;animation-delay:-9s;rotate:-30deg;scale:.8}
+.petal-4{left:53%;top:83%;animation-delay:-18s;rotate:125deg}
+.petal-5{left:68%;top:40%;animation-delay:-3s;rotate:45deg;scale:.65}
+.petal-6{left:84%;top:69%;animation-delay:-12s;rotate:-70deg}
+.petal-7{left:94%;top:29%;animation-delay:-20s;rotate:115deg;scale:.8}
+.petal-8{left:11%;top:89%;animation-delay:-5s;rotate:160deg;scale:.75}
+.petal-9{left:76%;top:7%;animation-delay:-16s;rotate:-15deg;scale:.6}
+.section-tint{background:linear-gradient(115deg,#eee2f0c9,#f7ece8bd 55%,#eae2f1c4)}
+.planning-background{background:radial-gradient(ellipse at 8% 30%,#ead9ef99,transparent 48%),radial-gradient(ellipse at 95% 72%,#f6dfdb77,transparent 48%),#fbf7fc66}
+.section-tint,.planning-background,.cta,.manifesto{position:relative;isolation:isolate}
+.section-tint:before,.planning-background:before,.cta:before,.manifesto:before{content:'';position:absolute;z-index:-1;pointer-events:none;width:clamp(150px,21vw,300px);aspect-ratio:1;right:0;top:18px;opacity:.38;background:radial-gradient(ellipse at 50% 28%,#c4a0d039 0 19%,transparent 20%),radial-gradient(ellipse at 72% 44%,#d8acc539 0 19%,transparent 20%),radial-gradient(ellipse at 64% 70%,#c4a0d039 0 19%,transparent 20%),radial-gradient(ellipse at 35% 70%,#d8acc539 0 19%,transparent 20%),radial-gradient(ellipse at 27% 43%,#c4a0d039 0 19%,transparent 20%),radial-gradient(circle at 50% 50%,#c5a46b55 0 5%,transparent 6%);animation:section-bloom 28s ease-in-out infinite alternate;transform-origin:center}
+.section-tint:nth-of-type(even):before{left:0;right:auto;top:auto;bottom:16px;animation-delay:-14s}
+.cta:before{opacity:.23;width:clamp(180px,26vw,360px);top:8%;right:5%}
+.planning-background:before{top:40px;right:10px;opacity:.6}
+.manifesto:before{opacity:.2;left:2%;top:8%}
+.page-hero .hero-flower{color:#aa82b4;opacity:.35;animation:section-bloom 30s ease-in-out infinite alternate}
+.floral-motion-toggle{position:fixed;left:18px;bottom:22px;z-index:29;display:inline-flex;align-items:center;gap:8px;min-height:44px;padding:8px 14px;border:1px solid #d8c6e1;border-radius:50px;background:#fffdf9ee;color:var(--plum);font-size:.8125rem;box-shadow:0 4px 18px #48205e0b}
+.floral-motion-toggle>span:first-child{font-size:22px;line-height:1}
+.floral-motion-toggle:hover{background:#f2eaf6;border-color:#b697c4}
+.floral-paused .botanical-scene *,.floral-paused .section-tint:before,.floral-paused .planning-background:before,.floral-paused .cta:before,.floral-paused .manifesto:before,.floral-paused .hero-flower{animation-play-state:paused!important}
+@keyframes botanical-sway{from{transform:translate3d(0,0,0) rotate(-2deg)}to{transform:translate3d(8px,-10px,0) rotate(2deg)}}
+@keyframes blossom-breathe{from{opacity:.75;scale:.97}to{opacity:1;scale:1.04}}
+@keyframes petal-drift{from{transform:translate3d(-10px,-22px,0) rotate(-15deg);opacity:.25}to{transform:translate3d(20px,32px,0) rotate(30deg);opacity:.65}}
+@keyframes section-bloom{from{transform:rotate(-5deg) scale(.97)}to{transform:rotate(6deg) scale(1.03)}}
+@media(max-width:700px){.botanical-spray{width:280px;opacity:.2}.botanical-spray-left{left:-145px;top:12%}.botanical-spray-right{right:-155px;top:0}.botanical-spray-lower{right:-145px;bottom:-90px;opacity:.15}.petal-2,.petal-3,.petal-5,.petal-8,.petal-9{display:none}.floral-motion-toggle{left:12px;bottom:20px;min-height:44px;padding:7px 11px;font-size:.75rem}.section-tint:before,.planning-background:before{opacity:.3;width:180px}}
+@media(prefers-reduced-motion:reduce){.botanical-scene *,.section-tint:before,.planning-background:before,.cta:before,.manifesto:before,.hero-flower{animation:none!important}.floral-motion-toggle{display:none}.botanical-petal{opacity:.3}}
+@media print{.botanical-scene,.floral-motion-toggle{display:none}.section-tint:before,.planning-background:before,.cta:before,.manifesto:before{display:none}}
